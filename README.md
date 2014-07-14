@@ -1,0 +1,2 @@
+CordovaContactPicker
+====================
