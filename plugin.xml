@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="com.monmouth.contactpicker" version="0.0.1">
+  <name>Cordova Contact Picker</name>
+  <description>Native Contact Picker for Cordova</description>
+  <license>Apache 2.0</license>
+  <keywords>cordova,contact,picker,phonegap</keywords>
+  <js-module src="www/ContactPicker.js" name="ContactPicker">
+    <clobbers target="contacts"/>
+  </js-module>
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="ContactPicker">
+        <param name="ios-package" value="ContactPicker"/>
+      </feature>
+    </config-file>
+    <header-file src="src/ios/ContactPicker.h" />
+    <source-file src="src/ios/ContactPicker.m" />
+    <framework src="AddressBook.framework" />
+    <framework src="AddressBookUI.framework" />
+  </platform>
+  <platform name="android">
+      <config-file target="res/xml/config.xml" parent="/*">
+          <feature name="ContactPicker">
+              <param name="android-package" value="com.monmouth.contactpicker"/>
+          </feature>
+      </config-file>
+      <config-file target="AndroidManifest.xml" parent="/*">
+          <uses-permission android:name="android.permission.READ_CONTACTS" />
+      </config-file>
+      <source-file src="src/android/ContactPicker.java" target-dir="src/com/monmouth/contactpicker" />
+  </platform>
+</plugin>
