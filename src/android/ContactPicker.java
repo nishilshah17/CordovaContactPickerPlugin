@@ -3,7 +3,7 @@ package com.monmouth.contactpicker;
 import android.app.Activity;
 import android.widget.Toast;
 import android.app.AlertDialog.*;
-android.content.DialogInterface;
+import android.content.DialogInterface;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
