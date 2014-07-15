@@ -41,25 +41,52 @@ public class ContactPicker extends CordovaPlugin {
         if (resultCode == Activity.RESULT_OK) {
 
             Uri contactData = data.getData();
+            Log.v(DEBUG_TAG, "Got a result: " + contactData.toString());
+            String cID = contactData.getLastPathSegment();
             ContentResolver resolver = context.getContentResolver();
             Cursor c =  resolver.query( ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                     null,
-                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
-                    new String[] { id },
+                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + cID,
+                    null,
                     null);
 
+            final ArrayList<String> phonesList = new ArrayList<String>();
+
             if (c.moveToFirst()) {
-                try {
                     String contactId = c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.CONTACT_ID));
                     String name = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
-                    String phoneNumber = c.getString(c.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Email.DATA));
+                    final String phoneNumber = "";
+                    do {
+                        String phone = phoneCur.getString(phoneCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA));
+                        phonesList.add(phone);
+                    } while (c.moveToNext());
 
+                    if(phonesList.size() == 0) {
+                        Toast.makeText(this, "No Phone Number associated with this Contact.", Toast.LENGTH_LONG).show();
+                    }else if(phonesList.size() == 1) {
+                         phoneNumber = phonesList.get(0);
+                    }else{
+                        final String[] phonesArr = new String[phonesList.size()];
+                        for(int i = 0; i < phonesList.size(); i++){phonesArr[i] = phonesList.get(i);}
+
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(Settings.this);
+
+                        dialog.setTitle("Select Phone Number");
+                        ((Builder) dialog).setItems(phonesArr,
+                            new DialogInterface.onClickListener() {
+                                public void onClick(DialogInterfce dialog, int which) {
+                                    phoneNumber = phonesArr[which];
+                                }
+                            }
+                        }).create();
+                    }
+
+                try {
                     JSONObject contact = new JSONObject();
                     contact.put("contactId", contactId);
                     contact.put("displayName", name);
                     contact.put("phoneNumber", phoneNumber);
                     callbackContext.success(contact);
-
                 } catch (Exception e) {
                     callbackContext.error("Parsing contact failed: " + e.getMessage());
                 }
