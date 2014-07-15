@@ -2,7 +2,8 @@ package com.monmouth.contactpicker;
 
 import android.app.Activity;
 import android.widget.Toast;
-import android.app.AlertDialog;
+import android.app.AlertDialog.*;
+android.content.DialogInterface;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +15,7 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import java.util.ArrayList;
 
 public class ContactPicker extends CordovaPlugin {
 
@@ -25,6 +27,8 @@ public class ContactPicker extends CordovaPlugin {
     {
         this.callbackContext = callbackContext;
         this.context = cordova.getActivity().getApplicationContext();
+
+        int CHOOSE_CONTACT = 1;
 
         if(action.equals("pickcontact")) {
             Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
@@ -43,7 +47,6 @@ public class ContactPicker extends CordovaPlugin {
         if (resultCode == Activity.RESULT_OK) {
 
             Uri contactData = data.getData();
-            Log.v(DEBUG_TAG, "Got a result: " + contactData.toString());
             String cID = contactData.getLastPathSegment();
             ContentResolver resolver = context.getContentResolver();
             Cursor c =  resolver.query( ContactsContract.CommonDataKinds.Phone.CONTENT_URI,

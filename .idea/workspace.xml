@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c88c071e-fd23-4910-acb9-f1989d611076" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/android/ContactPicker.java" afterPath="$PROJECT_DIR$/src/android/ContactPicker.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CordovaContactPicker.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,11 +28,9 @@
       <file leaf-file-name="ContactPicker.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/android/ContactPicker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.53754264" vertical-offset="780" max-vertical-offset="1710">
-              <caret line="73" column="90" selection-start-line="73" selection-start-column="90" selection-end-line="73" selection-end-column="90" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="-1.8924915" vertical-offset="1169" max-vertical-offset="1755">
+              <caret line="4" column="33" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -350,19 +347,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="316" max-vertical-offset="1185">
           <caret line="49" column="95" selection-start-line="49" selection-start-column="87" selection-end-line="49" selection-end-column="95" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/android/ContactPicker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53754264" vertical-offset="780" max-vertical-offset="1710">
-          <caret line="73" column="90" selection-start-line="73" selection-start-column="90" selection-end-line="73" selection-end-column="90" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="-1.8924915" vertical-offset="1169" max-vertical-offset="1755">
+          <caret line="4" column="33" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
