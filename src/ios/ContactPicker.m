@@ -4,7 +4,7 @@
 @implementation ContactPicker
 @synthesize callbackID;
 static BOOL defaultAction = NO;
-static NSString field;
+static NSString *field;
 
 - (void) pickContact:(CDVInvokedUrlCommand*)command{
     self.callbackID = command.callbackId;
