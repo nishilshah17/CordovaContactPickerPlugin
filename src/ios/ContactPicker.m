@@ -3,11 +3,13 @@
 
 @implementation ContactPicker
 @synthesize callbackID;
+static BOOL defaultAction = NO;
+static NSString field;
 
 - (void) pickContact:(CDVInvokedUrlCommand*)command{
     self.callbackID = command.callbackId;
-    NSString* field = [command.arguments objectAtIndex:0];
-    BOOL* defaultAction = [command.arguments objectAtIndex:1];
+    field = [command.arguments objectAtIndex:0];
+    defaultAction = [command.arguments objectAtIndex:1];
 
     ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
     NSArray *displayedItems = [NSArray arrayWithObjects:[NSNumber numberWithInt:kABPersonPhoneProperty], nil];
