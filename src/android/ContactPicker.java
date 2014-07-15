@@ -83,8 +83,7 @@ public class ContactPicker extends CordovaPlugin {
                         for(int i = 0; i < phonesList.size(); i++){phonesArr[i] = phonesList.get(i);}
                         AlertDialog.Builder dialog = new AlertDialog.Builder(this.context);
 
-                            dialog.setTitle("Select Phone Number");
-                            ((Builder) dialog).setItems(phonesArr,
+                            dialog.setTitle("Select Phone Number").setItems(phonesArr,
                                 new DialogInterface.onClickListener() {
                                     public void onClick(DialogInterfce dialog, int which) {
                                         phoneNumber = phonesArr[which];
