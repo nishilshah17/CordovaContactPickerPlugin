@@ -1,4 +1,4 @@
-package com.monmouth.contactpicker
+package com.monmouth.contactpicker;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -77,7 +77,6 @@ public class ContactPicker extends CordovaPlugin {
                                 public void onClick(DialogInterfce dialog, int which) {
                                     phoneNumber = phonesArr[which];
                                 }
-                            }
                         }).create();
                     }
 
