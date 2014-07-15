@@ -6,12 +6,14 @@
 
 - (void) pickContact:(CDVInvokedUrlCommand*)command{
     self.callbackID = command.callbackId;
+    NSString* field = [command.arguments objectAtIndex:0];
+    BOOL* defaultAction = [command.arguments objectAtIndex:1];
 
     ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
     NSArray *displayedItems = [NSArray arrayWithObjects:[NSNumber numberWithInt:kABPersonPhoneProperty], nil];
 
     picker.peoplePickerDelegate = self;
-    picker.displayedProperties = displayedItems
+    picker.displayedProperties = displayedItems;
     [self.viewController presentModalViewController:picker animated:YES];
 }
 
