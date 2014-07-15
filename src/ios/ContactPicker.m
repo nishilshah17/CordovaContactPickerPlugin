@@ -48,3 +48,13 @@
   [self.viewController dismissModalViewControllerAnimated:YES];
   return NO;
 }
+
+- (BOOL)personViewController:(ABPersonViewController*)personView
+shouldPerformDefaultActionForPerson:(ABRecordRef)person
+                    property:(ABPropertyID)property
+                  identifier:(ABMultiValueIdentifier)identifierForValue
+{
+    return NO;
+}
+
+@end
