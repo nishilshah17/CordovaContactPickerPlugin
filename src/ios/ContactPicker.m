@@ -14,13 +14,13 @@ static NSString *field;
     ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
     NSArray *displayedItems = [NSArray arrayWithObjects:[NSNumber numberWithInt:kABPersonPhoneProperty], nil];
 
-    picker.peoplePickerDelegate = self;
+    picker.peoplePickerDelegate = (id)self;
     picker.displayedProperties = displayedItems;
     [self.viewController presentViewController:picker animated:YES completion:nil];
 }
 
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker{
-    [self.viewController dismissModalViewControllerAnimated:YES];
+    [self.viewController dismissViewControllerAnimated:YES completion:nil];
     [super writeJavascript:[[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Canceled Person Picker"]
       toErrorCallbackString:self.callbackID]];
 }
