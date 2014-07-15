@@ -11,7 +11,6 @@ cordova.addConstructor(function() {
         window.Cordova = cordova;
     };
 
-
     if(!window.plugins) window.plugins = {};
     window.plugins.ContactPicker = new ContactPicker();
 });

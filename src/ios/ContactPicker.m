@@ -42,7 +42,7 @@ static NSString *field;
   }
 
   NSMutableDictionary* contact = [NSMutableDictionary dictionaryWithCapacity:2];
-  [contact setObject:email forKey: @"email"];
+  
   [contact setObject:displayName forKey: @"displayName"];
   [contact setObject:phoneNumber forKey: @"phoneNumber"];
 
