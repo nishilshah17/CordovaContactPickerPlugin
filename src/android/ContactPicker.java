@@ -1,9 +1,10 @@
 package com.monmouth.contactpicker;
 
 import android.app.Activity;
-import android.widget.Toast;
-import android.app.AlertDialog.*;
-import android.content.DialogInterface;
+import android.os.Bundle;
+import android.widget.*;
+import android.app.AlertDialog;
+import android.content.DialogInterface.*;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -67,7 +68,7 @@ public class ContactPicker extends CordovaPlugin {
                     } while (c.moveToNext());
 
                     if(phonesList.size() == 0) {
-                        Toast.makeText(this, "No Phone Number associated with this Contact.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "No Phone Number associated with this Contact.", Toast.LENGTH_LONG).show();
                     }else if(phonesList.size() == 1) {
                          phoneNumber = phonesList.get(0);
                     }else{
