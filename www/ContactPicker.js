@@ -1,6 +1,6 @@
 var ContactPicker = function(){};
 
-window.pickContact = function(success, failure) {
+ContactPicker.prototype.pickContact = function(success, failure) {
     cordova.exec(success, failure, "ContactPicker", "pickContact", []);
 };
 
