@@ -1,6 +1,8 @@
 package com.monmouth.contactpicker;
 
 import android.app.Activity;
+import android.widget.Toast;
+import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -55,9 +57,9 @@ public class ContactPicker extends CordovaPlugin {
             if (c.moveToFirst()) {
                     String contactId = c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.CONTACT_ID));
                     String name = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
-                    final String phoneNumber = "";
+                    String phoneNumber = "";
                     do {
-                        String phone = phoneCur.getString(phoneCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA));
+                        String phone = c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DATA));
                         phonesList.add(phone);
                     } while (c.moveToNext());
 
@@ -66,18 +68,20 @@ public class ContactPicker extends CordovaPlugin {
                     }else if(phonesList.size() == 1) {
                          phoneNumber = phonesList.get(0);
                     }else{
+
                         final String[] phonesArr = new String[phonesList.size()];
                         for(int i = 0; i < phonesList.size(); i++){phonesArr[i] = phonesList.get(i);}
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
 
-                        AlertDialog.Builder dialog = new AlertDialog.Builder(Settings.this);
+                            dialog.setTitle("Select Phone Number");
+                            ((Builder) dialog).setItems(phonesArr,
+                                new DialogInterface.onClickListener() {
+                                    public void onClick(DialogInterfce dialog, int which) {
+                                        phoneNumber = phonesArr[which];
+                                    }
+                            }).create();
 
-                        dialog.setTitle("Select Phone Number");
-                        ((Builder) dialog).setItems(phonesArr,
-                            new DialogInterface.onClickListener() {
-                                public void onClick(DialogInterfce dialog, int which) {
-                                    phoneNumber = phonesArr[which];
-                                }
-                        }).create();
+                        dialog.show();
                     }
 
                 try {
