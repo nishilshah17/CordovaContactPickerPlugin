@@ -36,4 +36,43 @@ public class ContactPicker extends CordovaPlugin {
         return false;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+
+            Uri contactData = data.getData();
+            ContentResolver resolver = context.getContentResolver();
+            Cursor c =  resolver.query( ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                    null,
+                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
+                    new String[] { id },
+                    null);
+
+            if (c.moveToFirst()) {
+                try {
+                    String contactId = c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.CONTACT_ID));
+                    String name = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
+                    String phoneNumber = c.getString(c.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Email.DATA));
+
+                    JSONObject contact = new JSONObject();
+                    contact.put("contactId", contactId);
+                    contact.put("displayName", name);
+                    contact.put("phoneNumber", phoneNumber);
+                    callbackContext.success(contact);
+
+                } catch (Exception e) {
+                    callbackContext.error("Parsing contact failed: " + e.getMessage());
+                }
+
+            } else {
+                callbackContext.error("Contact was not available.");
+            }
+
+            c.close();
+
+        } else if (resultCode == Activity.RESULT_CANCELED) {
+            callbackContext.error("No contact was selected.");
+        }
+    }
+
 }
