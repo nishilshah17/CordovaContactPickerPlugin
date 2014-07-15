@@ -8,15 +8,15 @@ static NSString *field;
 
 - (void) pickContact:(CDVInvokedUrlCommand*)command{
     self.callbackID = command.callbackId;
-    field = [command.arguments objectAtIndex:0];
-    defaultAction = [command.arguments objectAtIndex:1];
+    //field = [command.arguments objectAtIndex:0];
+    //defaultAction = [command.arguments objectAtIndex:1];
 
     ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
     NSArray *displayedItems = [NSArray arrayWithObjects:[NSNumber numberWithInt:kABPersonPhoneProperty], nil];
 
     picker.peoplePickerDelegate = self;
     picker.displayedProperties = displayedItems;
-    [self.viewController presentModalViewController:picker animated:YES];
+    [self.viewController presentViewController:picker animated:YES completion:nil];
 }
 
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker{
@@ -30,9 +30,7 @@ static NSString *field;
                                 property:(ABPropertyID)property
                               identifier:(ABMultiValueIdentifier)identifier
 {
-  ABMultiValueRef multi = ABRecordCopyValue(person, kABPersonEmailProperty);
-  int index = ABMultiValueGetIndexForIdentifier(multi, identifier);
-  NSString *email = (__bridge NSString *)ABMultiValueCopyValueAtIndex(multi, index);
+
   NSString *displayName = (__bridge NSString *)ABRecordCopyCompositeName(person);
   ABMultiValueRef multiPhones = ABRecordCopyValue(person, kABPersonPhoneProperty);
   NSString* phoneNumber = @"";
@@ -49,7 +47,7 @@ static NSString *field;
   [contact setObject:phoneNumber forKey: @"phoneNumber"];
 
   [super writeJavascript:[[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:contact] toSuccessCallbackString:self.callbackID]];
-  [self.viewController dismissModalViewControllerAnimated:YES];
+  [self.viewController dismissViewControllerAnimated:YES completion:nil];
   return NO;
 }
 
