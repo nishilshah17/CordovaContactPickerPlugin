@@ -4,8 +4,8 @@ cordova.define("com.monmouth.ContactPicker", function(require, exports, module) 
 var ContactPicker = function(){};
 
 
-ContactPicker.prototype.pickContact = function(success, failure, field){
-    cordova.exec(success, failure, "ContactPicker", "pickContact", [field]);
+ContactPicker.prototype.pickContact = function(success, failure){
+    cordova.exec(success, failure, "ContactPicker", "pickContact", []);
 };
 
 // Plug in to Cordova
