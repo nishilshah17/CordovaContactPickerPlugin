@@ -1,10 +1,14 @@
 package com.monmouth.contactpicker;
 
 import android.app.Activity;
-import android.os.Bundle;
-import android.widget.*;
+
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.*;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -75,7 +79,7 @@ public class ContactPicker extends CordovaPlugin {
 
                         final String[] phonesArr = new String[phonesList.size()];
                         for(int i = 0; i < phonesList.size(); i++){phonesArr[i] = phonesList.get(i);}
-                        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(this.context);
 
                             dialog.setTitle("Select Phone Number");
                             ((Builder) dialog).setItems(phonesArr,
