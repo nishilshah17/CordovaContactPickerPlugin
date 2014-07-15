@@ -8,7 +8,10 @@
     self.callbackID = command.callbackId;
 
     ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
+    NSArray *displayedItems = [NSArray arrayWithObjects:[NSNumber numberWithInt:kABPersonPhoneProperty], nil];
+
     picker.peoplePickerDelegate = self;
+    picker.displayedProperties = displayedItems
     [self.viewController presentModalViewController:picker animated:YES];
 }
 
