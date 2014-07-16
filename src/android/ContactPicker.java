@@ -1,6 +1,8 @@
 package com.monmouth.contactpicker;
 
 import android.app.Activity;
+
+import android.util.Log;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
