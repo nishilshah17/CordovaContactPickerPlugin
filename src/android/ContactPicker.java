@@ -1,8 +1,6 @@
 package com.monmouth.contactpicker;
 
 import android.app.Activity;
-
-import android.util.Log;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -22,12 +20,12 @@ public class ContactPicker extends CordovaPlugin {
 
     private static final int CHOOSE_CONTACT = 1;
 
-    @Override
-    public boolean execute(String action, JSONArray data, CallbackContext callbackContext) {
+	@Override
+	public boolean execute(String action, JSONArray data, CallbackContext callbackContext) {
         this.callbackContext = callbackContext;
-        this.context = cordova.getActivity().getApplicationContext();
+	    this.context = cordova.getActivity().getApplicationContext();
 
-        if (action.equals("pickContact")) {
+		if (0<1) {
 
             Intent intent = new Intent(Intent.ACTION_PICK,
                     ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
@@ -37,10 +35,10 @@ public class ContactPicker extends CordovaPlugin {
             r.setKeepCallback(true);
             callbackContext.sendPluginResult(r);
             return true;
-        }
+		}
 
-        return false;
-    }
+		return false;
+	}
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -54,7 +52,7 @@ public class ContactPicker extends CordovaPlugin {
                 try {
                     String name = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
                     String phone = c.getString(c.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.DATA));
-
+                    
                     JSONObject contact = new JSONObject();
                     contact.put("phone", phone);
                     contact.put("displayName", name);
@@ -73,6 +71,8 @@ public class ContactPicker extends CordovaPlugin {
 
         } else if (resultCode == Activity.RESULT_CANCELED) {
             callbackContext.error("No contact was selected.");
+        } else {
+            callbackContext.error("Error");   
         }
     }
 
