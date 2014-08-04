@@ -13,16 +13,19 @@ static NSString *field;
 
     ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
     NSArray *displayedItems = [NSArray arrayWithObjects:[NSNumber numberWithInt:kABPersonPhoneProperty], nil];
+    self.popoverController = [[UIPopoverController alloc] initWithContentViewController:picker];
 
     picker.peoplePickerDelegate = (id)self;
     picker.displayedProperties = displayedItems;
     picker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     picker.modalPresentationStyle = UIModalPresentationFormSheet;
-    [self.viewController presentViewController:picker animated:YES completion:nil];
+    //[self.viewController presentViewController:picker animated:YES completion:nil];
+    [self.popoverController presentPopoverFromRect:nil view:self.view permittedArrowDirections:UIPopOverArrowDirectionAny animated:YES];
 }
 
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker{
-    [self.viewController dismissViewControllerAnimated:NO completion:nil];
+    //[self.viewController dismissViewControllerAnimated:NO completion:nil];
+    [self.popoverController dismissPopoverAnimated:YES];
     [super writeJavascript:[[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Canceled Person Picker"]
       toErrorCallbackString:self.callbackID]];
 }
@@ -49,7 +52,7 @@ static NSString *field;
   [contact setObject:phoneNumber forKey: @"phoneNumber"];
 
   [super writeJavascript:[[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:contact] toSuccessCallbackString:self.callbackID]];
-  [self.viewController dismissViewControllerAnimated:NO completion:nil];
+  [self.popoverController dismissPopoverAnimated:YES];
   return NO;
 }
 
