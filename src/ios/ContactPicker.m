@@ -14,8 +14,6 @@ static NSString *field;
 
     picker.peoplePickerDelegate = (id)self;
     picker.displayedProperties = displayedItems;
-    picker.modalTransitionStyle = UIModalTransitionStylePartialCurl;
-    picker.modalPresentationStyle = UIModalPresentationFormSheet;
     [self.viewController presentViewController:picker animated:YES completion:nil];
 }
 
