@@ -22,7 +22,7 @@ static NSString *field;
     picker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     picker.modalPresentationStyle = UIModalPresentationFormSheet;
     //[self.viewController presentViewController:picker animated:YES completion:nil];
-    [self.popoverController presentPopoverFromRect:choosePersonRect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    [self.popoverController presentPopoverFromRect:choosePersonRect inView:self.viewController.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker{
