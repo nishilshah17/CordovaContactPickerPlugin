@@ -5,7 +5,7 @@
 
 @interface ContactPicker : CDVPlugin <ABPersonViewControllerDelegate>
 
-UIPopoverController* popoverController;
+@property UIPopoverController *popoverController;
 
 @property(strong) NSString* callbackID;
 
