@@ -16,6 +16,8 @@ static NSString *field;
 
     picker.peoplePickerDelegate = (id)self;
     picker.displayedProperties = displayedItems;
+    picker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    picker.modalPresentationStyle = UIModalPresentationNone;
     [self.viewController presentViewController:picker animated:NO completion:void (^)(void))];
 }
 
