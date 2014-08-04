@@ -10,7 +10,9 @@ static NSString *field;
     self.callbackID = command.callbackId;
     //field = [command.arguments objectAtIndex:0];
     //defaultAction = [command.arguments objectAtIndex:1];
-
+    
+    CGRect choosePersonRect;
+    
     ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
     NSArray *displayedItems = [NSArray arrayWithObjects:[NSNumber numberWithInt:kABPersonPhoneProperty], nil];
     self.popoverController = [[UIPopoverController alloc] initWithContentViewController:picker];
@@ -20,7 +22,7 @@ static NSString *field;
     picker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     picker.modalPresentationStyle = UIModalPresentationFormSheet;
     //[self.viewController presentViewController:picker animated:YES completion:nil];
-    [self.popoverController presentPopoverFromBarButtonItem:nil permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    [self.popoverController presentPopoverFromRect:choosePersonRect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker{
