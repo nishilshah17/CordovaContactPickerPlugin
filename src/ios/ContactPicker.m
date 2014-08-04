@@ -17,8 +17,8 @@ static NSString *field;
     picker.peoplePickerDelegate = (id)self;
     picker.displayedProperties = displayedItems;
     picker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    picker.modalPresentationStyle = UIModalPresentationNone;
-    [self.viewController presentViewController:picker animated:NO completion:nil];
+    picker.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self.viewController presentViewController:picker animated:YES completion:nil];
 }
 
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker{
