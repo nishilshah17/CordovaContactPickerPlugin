@@ -16,11 +16,11 @@ static NSString *field;
 
     picker.peoplePickerDelegate = (id)self;
     picker.displayedProperties = displayedItems;
-    [self.viewController presentViewController:picker animated:YES completion:nil];
+    [self.viewController presentViewController:picker animated:NO completion:nil];
 }
 
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker{
-    [self.viewController dismissViewControllerAnimated:YES completion:nil];
+    [self.viewController dismissViewControllerAnimated:NO completion:nil];
     [super writeJavascript:[[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Canceled Person Picker"]
       toErrorCallbackString:self.callbackID]];
 }
