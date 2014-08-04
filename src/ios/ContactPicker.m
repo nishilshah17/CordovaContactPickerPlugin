@@ -18,11 +18,11 @@ static NSString *field;
     picker.displayedProperties = displayedItems;
     picker.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     picker.modalPresentationStyle = UIModalPresentationNone;
-    [self.viewController presentViewController:picker animated:NO completion:void (^)(void))];
+    [self.viewController presentViewController:picker animated:NO completion:nil];
 }
 
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker{
-    [self.viewController dismissViewControllerAnimated:NO completion:void (^)(void))];
+    [self.viewController dismissViewControllerAnimated:NO completion:nil];
     [super writeJavascript:[[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Canceled Person Picker"]
       toErrorCallbackString:self.callbackID]];
 }
@@ -49,7 +49,7 @@ static NSString *field;
   [contact setObject:phoneNumber forKey: @"phoneNumber"];
 
   [super writeJavascript:[[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:contact] toSuccessCallbackString:self.callbackID]];
-  [self.viewController dismissViewControllerAnimated:NO completion:void (^)(void))];
+  [self.viewController dismissViewControllerAnimated:NO completion:nil];
   return NO;
 }
 
