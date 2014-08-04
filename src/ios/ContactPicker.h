@@ -5,8 +5,10 @@
 
 @interface ContactPicker : CDVPlugin <ABPersonViewControllerDelegate>
 
+UIPopoverController* popoverController
 @property(strong) NSString* callbackID;
 
 - (void) pickContact:(CDVInvokedUrlCommand*)command;
+
 
 @end
