@@ -3,8 +3,8 @@
 
 @implementation ContactPicker
 @synthesize callbackID;
-static BOOL defaultAction = NO;
-static NSString *field;
+//static BOOL defaultAction = NO;
+//static NSString *field;
 
 - (void) pickContact:(CDVInvokedUrlCommand*)command{
     self.callbackID = command.callbackId;
@@ -40,7 +40,7 @@ static NSString *field;
   }
 
   NSMutableDictionary* contact = [NSMutableDictionary dictionaryWithCapacity:2];
-  
+
   [contact setObject:displayName forKey: @"displayName"];
   [contact setObject:phoneNumber forKey: @"phoneNumber"];
 
@@ -55,6 +55,15 @@ shouldPerformDefaultActionForPerson:(ABRecordRef)person
                   identifier:(ABMultiValueIdentifier)identifierForValue
 {
     return NO;
+}
+
+//for ios 8 support
+- (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
+        didSelectPerson:(ABRecordRef)person
+        property:(ABPropertyID)property
+        identifier:(ABMultiValueIdentifier)identifier {
+
+    [self peoplePickerNavigationController:peoplePicker shouldContinueAfterSelectingPerson:person property:property identifier:identifier];
 }
 
 @end
